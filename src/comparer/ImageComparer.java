@@ -5,12 +5,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.List;
 
 public class ImageComparer {
-    private final static double MAX_DIFF = 25.5;
+    private final static double MAX_DIFF = 1677721.6;
     private final static double MAX_DISTANCE = 3;
 
     /**
@@ -18,8 +17,8 @@ public class ImageComparer {
      */
     public static void main(String[] args) {
         try {
-            BufferedImage img = ImageIO.read(new File("res/1.png"));
-            BufferedImage img2 = ImageIO.read(new File("res/2.png"));
+            BufferedImage img = ImageIO.read(new File("res/image1.png"));
+            BufferedImage img2 = ImageIO.read(new File("res/image2.png"));
 
             int width = img.getWidth();
             int height = img.getHeight();
@@ -40,27 +39,20 @@ public class ImageComparer {
             tmpBufferedImage.setRGB(0, 0, width, height, buffer, 0, width);
 
             for (int i = 0; i < p.length; i++) {
-                if (p[i] != p2[i]) {
+                if (p[i] != p2[i] & Math.abs(p[i] - p2[i]) > MAX_DIFF) {
                     buffer[i] = rgbHighlight;
                 }
             }
 
-
             tmpBufferedImage.setRGB(0, 0, width, height, buffer, 0, width);
-
 
             List<PicturePoint> points = getPoints(tmpBufferedImage, width, height, rgbHighlight);
             List<List> lists = getListsOfPoints(points);
 
             List<PicturePoint[]> rectangles = new ArrayList<>();
             for (List<List> list: lists) {
-                rectangles.add(getMaxXY(list));
+                rectangles.add(getExtremePoints(list));
             }
-
-            Color color1 = new Color(0, 0,0);
-            Color color2 = new Color(255, 255,255);
-
-            System.out.println(color1.getRGB() + "  " + color2.getRGB());
 
             printDiffRectangles(img2, rectangles);
 
@@ -112,7 +104,7 @@ public class ImageComparer {
         return lists;
     }
 
-    public static PicturePoint[] getMaxXY(List pointsList){
+    public static PicturePoint[] getExtremePoints(List pointsList){
         int xMax = 0;
         int yMax = 0;
         int xMin = Integer.MAX_VALUE;
@@ -134,9 +126,9 @@ public class ImageComparer {
             }
         }
 
-        PicturePoint[] maxXY = {new PicturePoint(xMax, yMax), new PicturePoint(xMin, yMin)};
+        PicturePoint[] extremePoints = {new PicturePoint(xMax, yMax), new PicturePoint(xMin, yMin)};
 
-        return maxXY;
+        return extremePoints;
     }
 
     public static void printDiffRectangles(BufferedImage bufferedImage, List<PicturePoint[]> rectangles) {
@@ -151,7 +143,7 @@ public class ImageComparer {
 
 
         for (PicturePoint[] rectangle: rectangles) {
-            if (width - rectangle[0].x < 2) {
+            if (width - rectangle[0].x -1 < 2) {
                 dxp = 0;
             }
             if (width - rectangle[0].x - 1 < 3) {
@@ -163,7 +155,7 @@ public class ImageComparer {
             if (height - rectangle[0].y - 1 < 2) {
                 dyp = 0;
             }
-            if(rectangle[1].y < 2) {
+            if(rectangle[1].y -1 < 2) {
                 dym = 0;
             }
 
