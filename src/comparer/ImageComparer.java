@@ -17,44 +17,26 @@ public class ImageComparer {
      */
     public static void main(String[] args) {
         try {
-            BufferedImage img = ImageIO.read(new File("res/image1.png"));
-            BufferedImage img2 = ImageIO.read(new File("res/image2.png"));
+            BufferedImage image = ImageIO.read(new File("res/1.png"));
+            BufferedImage imageForComparison = ImageIO.read(new File("res/2.png"));
 
-            int width = img.getWidth();
-            int height = img.getHeight();
-            int width2 = img2.getWidth();
-            int height2 = img2.getHeight();
+            int width = image.getWidth();
+            int height = image.getHeight();
+            int widthForComparison = imageForComparison.getWidth();
+            int heightForComparison = imageForComparison.getHeight();
 
-            if (width != width2 || height != height2) {
+            if (width != widthForComparison || height != heightForComparison) {
                 return;
             }
 
-            int rgbHighlight = Color.ORANGE.getRGB();
-            int[] p = img.getRGB(0, 0, width, height, null, 0, width);
-            int[] p2 = img2.getRGB(0, 0, width, height, null, 0, width);
+            int[] imageRGB = image.getRGB(0, 0, width, height, null, 0, width);
+            int[] imageRGBForComparison = imageForComparison.getRGB(0, 0, width, height, null, 0, width);
 
-            BufferedImage tmpBufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-            int[] buffer = new int[width * height];
+            List<PicturePoint> differentPoints = getDifferentPoints(imageRGB, imageRGBForComparison, width);
 
-            tmpBufferedImage.setRGB(0, 0, width, height, buffer, 0, width);
+            List<List> setsOfDifferentPoints = getSetsOfPoints(differentPoints);
 
-            for (int i = 0; i < p.length; i++) {
-                if (p[i] != p2[i] & Math.abs(p[i] - p2[i]) > MAX_DIFF) {
-                    buffer[i] = rgbHighlight;
-                }
-            }
-
-            tmpBufferedImage.setRGB(0, 0, width, height, buffer, 0, width);
-
-            List<PicturePoint> points = getPoints(tmpBufferedImage, width, height, rgbHighlight);
-            List<List> lists = getListsOfPoints(points);
-
-            List<PicturePoint[]> rectangles = new ArrayList<>();
-            for (List<List> list: lists) {
-                rectangles.add(getExtremePoints(list));
-            }
-
-            printDiffRectangles(img2, rectangles);
+            printDiffRectangles(imageForComparison, setsOfDifferentPoints);
 
         } catch(IOException e) {
             e.printStackTrace();
@@ -62,22 +44,26 @@ public class ImageComparer {
 
     }
 
-    public static List getPoints(BufferedImage bufferedImage, int width, int height, int rgb) {
-
+    public static List getDifferentPoints(int[] rgbArr, int[] rgbArr2, int width) {
         List<PicturePoint> points = new ArrayList<PicturePoint>();
 
-        for (int x = 0; x < width - 1; x++) {
-            for (int y = 0; y < height - 1; y++) {
-                if (bufferedImage.getRGB(x, y) == rgb ) {
-                    points.add(new PicturePoint(x, y));
-                }
+        int x = 0;
+        int y = 0;
+        for (int i = 0; i < rgbArr.length; i++) {
+            if (rgbArr[i] != rgbArr2[i] & Math.abs(rgbArr[i] - rgbArr2[i]) > MAX_DIFF) {
+                points.add(new PicturePoint(x, y));
+            }
+            x++;
+            if( x%width == 0) {
+                x = 0;
+                y++;
             }
         }
 
         return points;
     }
 
-    public static List getListsOfPoints(List<PicturePoint> points) {
+    public static List getSetsOfPoints(List<PicturePoint> points) {
         List<List> lists = new ArrayList<>();
 
         List<PicturePoint> setPoints;
@@ -131,7 +117,12 @@ public class ImageComparer {
         return extremePoints;
     }
 
-    public static void printDiffRectangles(BufferedImage bufferedImage, List<PicturePoint[]> rectangles) {
+    public static void printDiffRectangles(BufferedImage bufferedImage, List<List> sets) {
+        List<PicturePoint[]> rectangles = new ArrayList<>();
+        for (List<List> set: sets) {
+            rectangles.add(getExtremePoints(set));
+        }
+
         int rgb = Color.RED.getRGB();
         int width = bufferedImage.getWidth();
         int height = bufferedImage.getHeight();

@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7d2c18ca-5fa2-4e2f-9942-f5e7e4e36b18" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/outputfile.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/comparer/ImageComparer.java" afterPath="$PROJECT_DIR$/src/comparer/ImageComparer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -21,15 +19,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ImageComparer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ImageComparer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/comparer/ImageComparer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+            <state relative-caret-position="313">
+              <caret line="20" column="74" lean-forward="false" selection-start-line="20" selection-start-column="74" selection-end-line="20" selection-end-column="74" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#getDifferentPoints#0;class#ImageComparer#0" expanded="false" />
+                <element signature="method#getSetsOfPoints#0;class#ImageComparer#0" expanded="false" />
+                <element signature="method#getExtremePoints#0;class#ImageComparer#0" expanded="false" />
+                <element signature="method#printDiffRectangles#0;class#ImageComparer#0" expanded="false" />
               </folding>
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="outputfile.png" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/res/outputfile.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
           </provider>
         </entry>
       </file>
@@ -106,12 +115,6 @@
               <item name="ImageComparer" type="b2602c69:ProjectViewProjectNode" />
               <item name="ImageComparer" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ImageComparer" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ImageComparer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="comparer" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -277,7 +280,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="6253000" />
+    <option name="totallyTimeSpent" value="8550000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="1920" height="1084" extended-state="6" />
@@ -342,25 +345,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/comparer/ImageComparer.java</url>
-          <line>152</line>
-          <properties />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/comparer/ImageComparer.java</url>
-          <line>168</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/comparer/ImageComparer.java</url>
-          <line>41</line>
-          <properties />
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager>
@@ -408,7 +392,7 @@
         <state relative-caret-position="686">
           <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding>
-            <element signature="e#2347#2361#0" expanded="false" />
+            <element signature="e#1599#1613#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -458,6 +442,10 @@
           <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getDifferentPoints#0;class#ImageComparer#0" expanded="false" />
+            <element signature="method#getSetsOfPoints#0;class#ImageComparer#0" expanded="false" />
+            <element signature="method#getExtremePoints#0;class#ImageComparer#0" expanded="false" />
+            <element signature="method#printDiffRectangles#0;class#ImageComparer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -467,9 +455,9 @@
         <state relative-caret-position="421">
           <caret line="433" column="12" lean-forward="true" selection-start-line="433" selection-start-column="12" selection-end-line="433" selection-end-column="12" />
           <folding>
-            <marker date="1512594543126" expanded="true" signature="37611:37629" ph="..." />
-            <marker date="1512594543126" expanded="true" signature="37611:37642" ph="..." />
-            <marker date="1512594543126" expanded="true" signature="37611:37657" ph="..." />
+            <marker date="1512596880738" expanded="true" signature="38243:38261" ph="..." />
+            <marker date="1512596880738" expanded="true" signature="38243:38274" ph="..." />
+            <marker date="1512596880738" expanded="true" signature="38243:38289" ph="..." />
           </folding>
         </state>
       </provider>
@@ -531,6 +519,10 @@
           <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#getDifferentPoints#0;class#ImageComparer#0" expanded="false" />
+            <element signature="method#getSetsOfPoints#0;class#ImageComparer#0" expanded="false" />
+            <element signature="method#getExtremePoints#0;class#ImageComparer#0" expanded="false" />
+            <element signature="method#printDiffRectangles#0;class#ImageComparer#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -540,9 +532,9 @@
         <state relative-caret-position="1159">
           <caret line="630" column="12" lean-forward="true" selection-start-line="630" selection-start-column="12" selection-end-line="630" selection-end-column="12" />
           <folding>
-            <marker date="1512594543126" expanded="true" signature="37611:37629" ph="..." />
-            <marker date="1512594543126" expanded="true" signature="37611:37642" ph="..." />
-            <marker date="1512594543126" expanded="true" signature="37611:37657" ph="..." />
+            <marker date="1512596880738" expanded="true" signature="38243:38261" ph="..." />
+            <marker date="1512596880738" expanded="true" signature="38243:38274" ph="..." />
+            <marker date="1512596880738" expanded="true" signature="38243:38289" ph="..." />
           </folding>
         </state>
       </provider>
@@ -609,19 +601,23 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/comparer/ImageComparer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="20" column="74" lean-forward="false" selection-start-line="20" selection-start-column="74" selection-end-line="20" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#getDifferentPoints#0;class#ImageComparer#0" expanded="false" />
+            <element signature="method#getSetsOfPoints#0;class#ImageComparer#0" expanded="false" />
+            <element signature="method#getExtremePoints#0;class#ImageComparer#0" expanded="false" />
+            <element signature="method#printDiffRectangles#0;class#ImageComparer#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/res/outputfile.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/comparer/ImageComparer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
   </component>
