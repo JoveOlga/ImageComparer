@@ -143,22 +143,45 @@ public class ImageComparer {
         int rgb = Color.RED.getRGB();
         int width = bufferedImage.getWidth();
         int height = bufferedImage.getHeight();
-
+        int dxm = 2;
+        int dxp = 2;
+        int dxp2 = 3;
+        int dym = 2;
+        int dyp = 2;
 
 
         for (PicturePoint[] rectangle: rectangles) {
-            for(int i = rectangle[1].x - 2 ; i < rectangle[0].x + 3; i++){
-                bufferedImage.setRGB(i, rectangle[1].y - 2, rgb);
-                bufferedImage.setRGB(i, rectangle[0].y + 2, rgb);
+            if (width - rectangle[0].x < 2) {
+                dxp = 0;
             }
-            for(int j = rectangle[1].y - 2 ; j < rectangle[0].y + 2; j++){
-                bufferedImage.setRGB(rectangle[1].x - 2, j, rgb);
-                bufferedImage.setRGB(rectangle[0].x + 2, j, rgb);
+            if (width - rectangle[0].x - 1 < 3) {
+                dxp2 = 0;
             }
+            if(rectangle[1].x < 2) {
+                dxm = 0;
+            }
+            if (height - rectangle[0].y - 1 < 2) {
+                dyp = 0;
+            }
+            if(rectangle[1].y < 2) {
+                dym = 0;
+            }
+
+            for(int i = rectangle[1].x - dxm ; i < rectangle[0].x + dxp2; i++){
+                bufferedImage.setRGB(i, rectangle[1].y - dym, rgb);
+                bufferedImage.setRGB(i, rectangle[0].y + dyp, rgb);
+            }
+            for(int j = rectangle[1].y - dym ; j < rectangle[0].y + dyp; j++){
+                bufferedImage.setRGB(rectangle[1].x - dxm, j, rgb);
+                bufferedImage.setRGB(rectangle[0].x + dxp, j, rgb);
+            }
+
+            dxm = dxp = dym = dyp = 2;
+            dxp2 = 3;
         }
 
         try {
-            ImageIO.write(bufferedImage, "png", new File("res/outputfile1.png"));
+            ImageIO.write(bufferedImage, "png", new File("res/outputfile.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
