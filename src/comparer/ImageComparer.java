@@ -11,14 +11,15 @@ import java.util.List;
 public class ImageComparer {
     private final static double MAX_DIFF = 1677721.6;
     private final static double MAX_DISTANCE = 3;
+    private static String path;
+    private static String pathForComparison;
+    public static BufferedImage resultingBufferedImage;
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args) {
+    public static String compare() {
         try {
-            BufferedImage image = ImageIO.read(new File("res/1.png"));
-            BufferedImage imageForComparison = ImageIO.read(new File("res/2.png"));
+
+            BufferedImage image = ImageIO.read(new File(path));
+            BufferedImage imageForComparison = ImageIO.read(new File(pathForComparison));
 
             int width = image.getWidth();
             int height = image.getHeight();
@@ -26,7 +27,7 @@ public class ImageComparer {
             int heightForComparison = imageForComparison.getHeight();
 
             if (width != widthForComparison || height != heightForComparison) {
-                return;
+                return "The selected files aren't the same size";
             }
 
             int[] imageRGB = image.getRGB(0, 0, width, height, null, 0, width);
@@ -37,14 +38,15 @@ public class ImageComparer {
             List<List> setsOfDifferentPoints = getSetsOfPoints(differentPoints);
 
             printDiffRectangles(imageForComparison, setsOfDifferentPoints);
-
+            return "";
         } catch(IOException e) {
-            e.printStackTrace();
+            return "It wasn't possible to open the files, try to select other files.";
+        } catch(Exception e) {
+            return "The selected files aren't pictures";
         }
-
     }
 
-    public static List getDifferentPoints(int[] rgbArr, int[] rgbArr2, int width) {
+    private static List getDifferentPoints(int[] rgbArr, int[] rgbArr2, int width) {
         List<PicturePoint> points = new ArrayList<PicturePoint>();
 
         int x = 0;
@@ -63,7 +65,7 @@ public class ImageComparer {
         return points;
     }
 
-    public static List getSetsOfPoints(List<PicturePoint> points) {
+    private static List getSetsOfPoints(List<PicturePoint> points) {
         List<List> lists = new ArrayList<>();
 
         List<PicturePoint> setPoints;
@@ -90,7 +92,7 @@ public class ImageComparer {
         return lists;
     }
 
-    public static PicturePoint[] getExtremePoints(List pointsList){
+    private static PicturePoint[] getExtremePoints(List pointsList){
         int xMax = 0;
         int yMax = 0;
         int xMin = Integer.MAX_VALUE;
@@ -117,7 +119,7 @@ public class ImageComparer {
         return extremePoints;
     }
 
-    public static void printDiffRectangles(BufferedImage bufferedImage, List<List> sets) {
+    private static void printDiffRectangles(BufferedImage bufferedImage, List<List> sets) {
         List<PicturePoint[]> rectangles = new ArrayList<>();
         for (List<List> set: sets) {
             rectangles.add(getExtremePoints(set));
@@ -163,10 +165,16 @@ public class ImageComparer {
             dxp2 = 3;
         }
 
-        try {
-            ImageIO.write(bufferedImage, "png", new File("res/outputfile.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+          resultingBufferedImage = bufferedImage;
+//        ImageIO.write(bufferedImage, "png", new File("res/outputfile.png"));
+
+    }
+
+    public static void setPath(String path) {
+        ImageComparer.path = path;
+    }
+
+    public static void setPathForComparison(String pathForComparison) {
+        ImageComparer.pathForComparison = pathForComparison;
     }
 }
